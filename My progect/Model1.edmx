@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DeliveryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autorization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DrinkSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dish" Type="nvarchar(max)" />
+          <Property Name="Сomposition" Type="nvarchar(max)" />
+          <Property Name="Prise" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProductTraking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSalad" Type="int" />
+          <Property Name="IdSecondCourse" Type="int" />
+          <Property Name="IdSoups" Type="int" />
+          <Property Name="IdDrink" Type="int" />
+          <Property Name="IdWorker" Type="int" />
+        </EntityType>
+        <EntityType Name="SaladSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dish" Type="nvarchar(max)" />
+          <Property Name="Сomposition" Type="nvarchar(max)" />
+          <Property Name="Prise" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SecondCourseSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dish" Type="nvarchar(max)" />
+          <Property Name="Сomposition" Type="nvarchar(max)" />
+          <Property Name="Prise" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SoupsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dish" Type="nvarchar(max)" />
+          <Property Name="Сomposition" Type="nvarchar(max)" />
+          <Property Name="Prise" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="WorkerSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="MiddleName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_ProductTraking_DrinkSet">
+          <End Role="DrinkSet" Type="Self.DrinkSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrinkSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdDrink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTraking_SaladSet">
+          <End Role="SaladSet" Type="Self.SaladSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaladSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdSalad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTraking_SecondCourseSet">
+          <End Role="SecondCourseSet" Type="Self.SecondCourseSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecondCourseSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdSecondCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTraking_SoupsSet">
+          <End Role="SoupsSet" Type="Self.SoupsSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoupsSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdSoups" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTraking_WorkerSet">
+          <End Role="WorkerSet" Type="Self.WorkerSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DeliveryModelContainer">
+          <EntitySet Name="Autorization" EntityType="Self.Autorization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DrinkSet" EntityType="Self.DrinkSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTraking" EntityType="Self.ProductTraking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaladSet" EntityType="Self.SaladSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecondCourseSet" EntityType="Self.SecondCourseSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SoupsSet" EntityType="Self.SoupsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerSet" EntityType="Self.WorkerSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProductTraking_DrinkSet" Association="Self.FK_ProductTraking_DrinkSet">
+            <End Role="DrinkSet" EntitySet="DrinkSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTraking_SaladSet" Association="Self.FK_ProductTraking_SaladSet">
+            <End Role="SaladSet" EntitySet="SaladSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTraking_SecondCourseSet" Association="Self.FK_ProductTraking_SecondCourseSet">
+            <End Role="SecondCourseSet" EntitySet="SecondCourseSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTraking_SoupsSet" Association="Self.FK_ProductTraking_SoupsSet">
+            <End Role="SoupsSet" EntitySet="SoupsSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTraking_WorkerSet" Association="Self.FK_ProductTraking_WorkerSet">
+            <End Role="WorkerSet" EntitySet="WorkerSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DeliveryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autorization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DrinkSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Сomposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prise" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductTraking" Relationship="Self.FK_ProductTraking_DrinkSet" FromRole="DrinkSet" ToRole="ProductTraking" />
+        </EntityType>
+        <EntityType Name="ProductTraking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSalad" Type="Int32" />
+          <Property Name="IdSecondCourse" Type="Int32" />
+          <Property Name="IdSoups" Type="Int32" />
+          <Property Name="IdDrink" Type="Int32" />
+          <Property Name="IdWorker" Type="Int32" />
+          <NavigationProperty Name="DrinkSet" Relationship="Self.FK_ProductTraking_DrinkSet" FromRole="ProductTraking" ToRole="DrinkSet" />
+          <NavigationProperty Name="SaladSet" Relationship="Self.FK_ProductTraking_SaladSet" FromRole="ProductTraking" ToRole="SaladSet" />
+          <NavigationProperty Name="SecondCourseSet" Relationship="Self.FK_ProductTraking_SecondCourseSet" FromRole="ProductTraking" ToRole="SecondCourseSet" />
+          <NavigationProperty Name="SoupsSet" Relationship="Self.FK_ProductTraking_SoupsSet" FromRole="ProductTraking" ToRole="SoupsSet" />
+          <NavigationProperty Name="WorkerSet" Relationship="Self.FK_ProductTraking_WorkerSet" FromRole="ProductTraking" ToRole="WorkerSet" />
+        </EntityType>
+        <EntityType Name="SaladSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Сomposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prise" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductTraking" Relationship="Self.FK_ProductTraking_SaladSet" FromRole="SaladSet" ToRole="ProductTraking" />
+        </EntityType>
+        <EntityType Name="SecondCourseSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Сomposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prise" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductTraking" Relationship="Self.FK_ProductTraking_SecondCourseSet" FromRole="SecondCourseSet" ToRole="ProductTraking" />
+        </EntityType>
+        <EntityType Name="SoupsSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Сomposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prise" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductTraking" Relationship="Self.FK_ProductTraking_SoupsSet" FromRole="SoupsSet" ToRole="ProductTraking" />
+        </EntityType>
+        <EntityType Name="WorkerSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductTraking" Relationship="Self.FK_ProductTraking_WorkerSet" FromRole="WorkerSet" ToRole="ProductTraking" />
+        </EntityType>
+        <Association Name="FK_ProductTraking_DrinkSet">
+          <End Role="DrinkSet" Type="Self.DrinkSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrinkSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdDrink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTraking_SaladSet">
+          <End Role="SaladSet" Type="Self.SaladSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaladSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdSalad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTraking_SecondCourseSet">
+          <End Role="SecondCourseSet" Type="Self.SecondCourseSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecondCourseSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdSecondCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTraking_SoupsSet">
+          <End Role="SoupsSet" Type="Self.SoupsSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SoupsSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdSoups" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTraking_WorkerSet">
+          <End Role="WorkerSet" Type="Self.WorkerSet" Multiplicity="0..1" />
+          <End Role="ProductTraking" Type="Self.ProductTraking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTraking">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DeliveryEntities10" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autorization" EntityType="Self.Autorization" />
+          <EntitySet Name="DrinkSet" EntityType="Self.DrinkSet" />
+          <EntitySet Name="ProductTraking" EntityType="Self.ProductTraking" />
+          <EntitySet Name="SaladSet" EntityType="Self.SaladSet" />
+          <EntitySet Name="SecondCourseSet" EntityType="Self.SecondCourseSet" />
+          <EntitySet Name="SoupsSet" EntityType="Self.SoupsSet" />
+          <EntitySet Name="WorkerSet" EntityType="Self.WorkerSet" />
+          <AssociationSet Name="FK_ProductTraking_DrinkSet" Association="Self.FK_ProductTraking_DrinkSet">
+            <End Role="DrinkSet" EntitySet="DrinkSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTraking_SaladSet" Association="Self.FK_ProductTraking_SaladSet">
+            <End Role="SaladSet" EntitySet="SaladSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTraking_SecondCourseSet" Association="Self.FK_ProductTraking_SecondCourseSet">
+            <End Role="SecondCourseSet" EntitySet="SecondCourseSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTraking_SoupsSet" Association="Self.FK_ProductTraking_SoupsSet">
+            <End Role="SoupsSet" EntitySet="SoupsSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTraking_WorkerSet" Association="Self.FK_ProductTraking_WorkerSet">
+            <End Role="WorkerSet" EntitySet="WorkerSet" />
+            <End Role="ProductTraking" EntitySet="ProductTraking" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DeliveryModelContainer" CdmEntityContainer="DeliveryEntities10">
+          <EntitySetMapping Name="Autorization">
+            <EntityTypeMapping TypeName="DeliveryModel.Autorization">
+              <MappingFragment StoreEntitySet="Autorization">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DrinkSet">
+            <EntityTypeMapping TypeName="DeliveryModel.DrinkSet">
+              <MappingFragment StoreEntitySet="DrinkSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dish" ColumnName="Dish" />
+                <ScalarProperty Name="Сomposition" ColumnName="Сomposition" />
+                <ScalarProperty Name="Prise" ColumnName="Prise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTraking">
+            <EntityTypeMapping TypeName="DeliveryModel.ProductTraking">
+              <MappingFragment StoreEntitySet="ProductTraking">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSalad" ColumnName="IdSalad" />
+                <ScalarProperty Name="IdSecondCourse" ColumnName="IdSecondCourse" />
+                <ScalarProperty Name="IdSoups" ColumnName="IdSoups" />
+                <ScalarProperty Name="IdDrink" ColumnName="IdDrink" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaladSet">
+            <EntityTypeMapping TypeName="DeliveryModel.SaladSet">
+              <MappingFragment StoreEntitySet="SaladSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dish" ColumnName="Dish" />
+                <ScalarProperty Name="Сomposition" ColumnName="Сomposition" />
+                <ScalarProperty Name="Prise" ColumnName="Prise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecondCourseSet">
+            <EntityTypeMapping TypeName="DeliveryModel.SecondCourseSet">
+              <MappingFragment StoreEntitySet="SecondCourseSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dish" ColumnName="Dish" />
+                <ScalarProperty Name="Сomposition" ColumnName="Сomposition" />
+                <ScalarProperty Name="Prise" ColumnName="Prise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoupsSet">
+            <EntityTypeMapping TypeName="DeliveryModel.SoupsSet">
+              <MappingFragment StoreEntitySet="SoupsSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dish" ColumnName="Dish" />
+                <ScalarProperty Name="Сomposition" ColumnName="Сomposition" />
+                <ScalarProperty Name="Prise" ColumnName="Prise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerSet">
+            <EntityTypeMapping TypeName="DeliveryModel.WorkerSet">
+              <MappingFragment StoreEntitySet="WorkerSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
